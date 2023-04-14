@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "c/EKS2yaDPfW6jUUEu5Mw1jxsIkaPAxp7K3wl2FYtIdE1evEIT3iazNKi4Q9etU381osuAymA23+w7FaBYkFHA==",
+  "success": true,
+  "projectFilePath": "E:\\GuessingGame\\GuessingGameApi\\GuessingGameApi\\GuessingGameApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.2\\microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\Assalomu Alaykum\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
