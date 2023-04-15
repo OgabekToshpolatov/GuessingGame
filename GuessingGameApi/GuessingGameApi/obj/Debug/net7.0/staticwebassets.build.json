@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hDFNOkfMhNHGnSfalxT+w4AHf/gqP3VKpXCYIxLLnYU=",
+  "Source": "GuessingGameApi",
+  "BasePath": "_content/GuessingGameApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
