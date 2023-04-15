@@ -1,6 +1,6 @@
 namespace GuessingGameApi.Services;
 
-public class IUserService
+public interface IUserService
 {
-    
+    ValueTask<long> GetUserIdAsync(string userName);
 }

@@ -68,3 +68,5 @@ E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\runtimes\win-ar
 E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
+E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\Mapster.dll
+E:\GuessingGame\GuessingGameApi\GuessingGameApi\bin\Debug\net7.0\Mapster.Core.dll

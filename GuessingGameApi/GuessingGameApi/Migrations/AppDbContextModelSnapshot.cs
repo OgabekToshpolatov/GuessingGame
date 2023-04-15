@@ -28,13 +28,13 @@ namespace GuessingGameApi.Migrations
                     b.Property<bool>("IsWinner")
                         .HasColumnType("INTEGER");
 
-                    b.Property<ushort>("MaximumTries")
+                    b.Property<int>("MaximumTries")
                         .HasColumnType("INTEGER");
 
-                    b.Property<ushort>("NumberOfTries")
+                    b.Property<int>("NumberOfTries")
                         .HasColumnType("INTEGER");
 
-                    b.Property<ushort>("SecretNumber")
+                    b.Property<int>("SecretNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<long>("UserId")

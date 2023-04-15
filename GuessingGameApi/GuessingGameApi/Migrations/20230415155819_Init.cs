@@ -5,7 +5,7 @@
 namespace GuessingGameApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,9 +29,9 @@ namespace GuessingGameApi.Migrations
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SecretNumber = table.Column<ushort>(type: "INTEGER", nullable: false),
-                    NumberOfTries = table.Column<ushort>(type: "INTEGER", nullable: false),
-                    MaximumTries = table.Column<ushort>(type: "INTEGER", nullable: false),
+                    SecretNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    NumberOfTries = table.Column<int>(type: "INTEGER", nullable: false),
+                    MaximumTries = table.Column<int>(type: "INTEGER", nullable: false),
                     IsFinish = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsWinner = table.Column<bool>(type: "INTEGER", nullable: false),
                     UserId = table.Column<long>(type: "INTEGER", nullable: false)
