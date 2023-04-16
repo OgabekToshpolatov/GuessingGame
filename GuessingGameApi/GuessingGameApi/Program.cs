@@ -1,4 +1,5 @@
 using GuessingGameApi.Data;
+using GuessingGameApi.Middlewares;
 using GuessingGameApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 

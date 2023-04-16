@@ -1,4 +1,6 @@
 using GuessingGameApi.Data;
+using GuessingGameApi.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuessingGameApi.Services;
 
@@ -13,8 +15,21 @@ public class UserService : IUserService
         _logger = logger ;
     }
 
-    public ValueTask<long> GetUserIdAsync(string userName)
+    public async ValueTask<long> GetUserIdAsync(string userName)
     {
-        throw new NotImplementedException();
+        var user =await _context.Users!.FirstOrDefaultAsync(user => user.UserName == userName);
+        
+        if(user != null) return user.Id ;
+
+        var newUser = new User
+        {
+            UserName = userName,
+            Games = new List<Game>()
+        };
+
+        await _context.Users!.AddAsync(newUser);
+        await _context.SaveChangesAsync();
+
+        return newUser.Id;
     }
 }

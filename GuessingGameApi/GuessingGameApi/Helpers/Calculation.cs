@@ -20,4 +20,32 @@ public static class Calculation
 
         return randomNonRepeatingNumber;
     }
+
+    public static string CheckGuessNumber(int secretNumber, int guessNumber)
+    {
+        var m = 0;
+        var p = 0;
+        var secretNumberString = secretNumber.ToString();
+        var guessNumberString = guessNumber.ToString();
+
+        for (var i = 0; i < secretNumberString.Length; i++)
+        {
+            if (secretNumberString[i] == guessNumberString[i])
+            {
+                p++;
+                continue;
+            }
+
+            for (var j = 0; j < guessNumberString.Length; j++)
+            {
+                if (secretNumberString[i] == guessNumberString[j])
+                {
+                    m++;
+                    continue;
+                }
+            }
+        }
+
+        return $"M:{m}; P:{p}";
+    }
 }
