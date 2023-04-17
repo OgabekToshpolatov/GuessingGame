@@ -36,6 +36,7 @@ export class HomePageComponent implements OnInit {
               console.log(res);
               localStorage.setItem('userName',this.userForm.get('userName')?.value);
               localStorage.setItem('userId',res.userId.toString());
+              localStorage.setItem('gameId',res.id.toString());
               alert("succesfully Create")
               this.userForm.reset()
               this.router.navigate(['game'])
