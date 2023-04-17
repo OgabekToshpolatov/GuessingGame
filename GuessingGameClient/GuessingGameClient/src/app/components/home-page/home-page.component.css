@@ -24,3 +24,25 @@ span{
 .user-form-button {
   position: relative;
 }
+
+input{
+  width: 300px;
+  margin: 0 auto;
+}
+
+button{
+  width: 300px;
+}
+
+.input-field{
+
+  position: relative;
+  width: 350px;
+  margin: 0 auto;
+}
+
+.input-field span{
+  position: absolute;
+  left: 36%;
+  bottom: 5%;
+}

@@ -11,23 +11,22 @@
   <p>• Game ends after 8 tries or if the correct number is guessed</p>
 </div>
 
-<div class="panel-body p-3">
+<div>
   <form [formGroup]="userForm">
-    <div class="button-container">
-      <input type="text" placeholder="Enter Username">
-      <p *ngIf="(f['username'].touched || f['username'].dirty) && f['username'].errors">
-        <span *ngIf = "f['username'].errors?.['required'] ">*Username is required*</span>
-      </p>
-      <button class="button">
-        <i class="fa fa-user" aria-hidden="true"></i>
-      </button>
-    </div>
-    <br>
-    <button mat-raised-button color="primary" class="user-form-button" (click)="submitUsername()">
-      Start Game
-    </button>
+      <div class="form-group pt-3">
+        <div class="input-field"><span class="fa fa-user p-2"></span><input class="form-control" matInput placeholder="Enter Username" formControlName="userName"> </div>
+        <p *ngIf="(f['userName'].touched || f['userName'].dirty) && f['userName'].errors">
+          <span *ngIf = "f['userName'].errors?.['required'] ">*Username is required*</span>
+        </p>
+        <p></p>
+        <button mat-raised-button color="primary" class="user-form-button btn btn-primary" (click)="createNewGame()" [disabled]="!userForm.valid">
+          Start
+        </button>
+      </div>
   </form>
 </div>
+
+
 
 
 

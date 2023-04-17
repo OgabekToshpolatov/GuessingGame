@@ -1,0 +1,45 @@
+.game-style{
+  border: 1px solid black;
+  display: flex;
+  gap: 10px;
+  margin-top: 100px;
+}
+
+.game-style .left-block, .game-style .rigth-block{
+  width: 50%;
+  border: 1px solid black;
+}
+
+.game-style .left-block{
+    text-align: center;
+}
+
+.game-style .left-block .form-block{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin: 25px 0px;
+}
+
+.game-style .left-block .form-block input{
+    width: 40px;
+}
+
+.game-style .rigth-block ul{
+  list-style-type: none;
+}
+
+.game-style .rigth-block ul li{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px 0px;
+
+}
+
+.game-style .rigth-block ul li .result-left-box{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 7px 20px;
+}
