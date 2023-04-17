@@ -10,6 +10,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options => {
+   options.AddPolicy("MyPolicy", builder =>{
+          builder.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                                  .AllowAnyHeader();
+   });
+});
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGameService,GameService>();
 
@@ -29,6 +37,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.UseMiddleware<ErrorHandlerMiddleware>();
+
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 
