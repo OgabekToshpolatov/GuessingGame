@@ -74,6 +74,51 @@ public class GameService : IGameService
         }
     }
 
+    public async ValueTask<List<UserRating>> GetUserRatingAsync()
+    {
+         var users = await _context.Users!.ToListAsync();
+        var usersRating = new List<UserRating>();
+
+        foreach (var user in users)
+        {
+            var totalWins = 0;
+            var totalGames = 0;
+            var totalTries = 0;
+
+            foreach (var userGame in user.Games!)
+            {
+                if(userGame.IsWinner)
+                    totalWins++;
+
+                totalGames++;
+                totalTries = userGame.NumberOfTries > 8 ? totalTries + 8 : totalTries + userGame.NumberOfTries;
+            }
+
+            usersRating.Add(new UserRating
+            {
+                Id = 0,
+                UserName = user.UserName!,
+                TotalWins = totalWins,
+                TotalGames = totalGames,
+                TotalTries = totalTries,
+                SuccessRate = totalGames == 0 ? 0 : Math.Round((double)totalWins / totalGames * 100, 1)
+            });
+        }
+
+        var id = 1;
+        var sortedUsersStats = usersRating
+            .OrderByDescending(userStats => userStats.SuccessRate)
+            .ThenBy(userStats => userStats.TotalTries)
+            .ToList();
+
+        foreach (var sortedUsersStat in sortedUsersStats)
+        {
+            sortedUsersStat.Id = id++;
+        }
+
+        return sortedUsersStats;
+    }
+
     public async ValueTask<GuessResponse> GuessNumberAsync(GuessRequest guessRequest)
     {
         var game = await _context.Games!.FirstOrDefaultAsync(game => game.Id == guessRequest.GameId);

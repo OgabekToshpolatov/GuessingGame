@@ -66,13 +66,10 @@
            </div>
       </div>
       <div class="rigth-block">
-           <ul>
-              <li>
-                <div class="result-left-box">1223</div>
-                 <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-           </ul>
+        <div *ngFor="let str of otherTriesResult">
+          {{ str }}
+        </div>
+
       </div>
    </div>
 </body>

@@ -8,5 +8,7 @@ public interface IGameService
     ValueTask<GameDto> GetGameByIdAsync(long gameId);
     ValueTask<GameDto> CreateGameAsync(string userName);
     ValueTask<GuessResponse> GuessNumberAsync(GuessRequest guessRequest);
+    ValueTask<List<UserRating>> GetUserRatingAsync();
+
     
 }

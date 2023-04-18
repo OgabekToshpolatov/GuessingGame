@@ -1,6 +1,6 @@
 export interface GuessResponse{
   message: string,
-  isFinished: boolean,
+  isFinish: boolean,
   isWinner: boolean,
   secretNumber: number,
   numberOfTriesRest: number

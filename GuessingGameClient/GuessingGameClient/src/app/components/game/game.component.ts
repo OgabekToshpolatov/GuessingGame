@@ -20,6 +20,7 @@ export class GameComponent implements OnInit {
   gameDto?: GameDto;
   guessResponse?: GuessResponse;
   otherTriesResult: string[] = [];
+
   constructor(private activatedRoute: ActivatedRoute,
     private gameService: GameService,
     private router: Router,
@@ -37,6 +38,7 @@ export class GameComponent implements OnInit {
       var gameId = Number(gameIdStorage);
       this.gameService.getGameById(gameId).subscribe(
         (data:any) => {
+
           this.gameDto = data as GameDto;
           console.log("#########################",this.gameDto.maximumTries)
           console.log("PPPPPPPPPPPPPPPP",this.gameDto.numberOfTries);
@@ -49,6 +51,12 @@ export class GameComponent implements OnInit {
           }
         }
       )
+      console.log(this.otherTriesResult.length);
+      console.log("MASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+      for(const str of this.otherTriesResult){
+        console.log(str);
+      }
+      console.log("MASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
 
     }
     get f(){
@@ -100,9 +108,15 @@ export class GameComponent implements OnInit {
       this.gameService.guessNumber(guessRequest).subscribe(
         (data: any) => {
           this.guessResponse = data as GuessResponse;
-          this.otherTriesResult
+          console.log("Salom salom salom salom ",this.guessResponse.message)
+          const otherTries:string[] = [];
+          otherTries
             .push(`Message: ${this.guessResponse.message} | Guess Number: ${guessRequest.guessNumber}`);
-            this.router.navigate(['game']).then(() => { window.location.reload() })
+            for(const str of this.otherTriesResult){
+              console.log(str);
+            }
+
+            this.router.navigate(['game'])
         },
         (error: HttpErrorResponse) => {
           alert(error.error.error);

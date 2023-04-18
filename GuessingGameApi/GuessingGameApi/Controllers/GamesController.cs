@@ -46,5 +46,9 @@ public class GamesController:ControllerBase
         return Ok(guessResponse);
     }
 
+    [HttpGet("user-rating")]
+    public async Task<IActionResult> GetLeaderboard() =>
+        Ok(await _gameService.GetUserRatingAsync());
+
 
 }
