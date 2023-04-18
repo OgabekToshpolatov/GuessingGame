@@ -1,3 +1,4 @@
+<br><br><br><br>
 <div>
   <h2>Game Rules</h2>
   <p>• Program chooses a random secret number with 4 digits</p>
@@ -13,6 +14,7 @@
 
 <div>
   <form [formGroup]="userForm">
+    <div *ngIf="IsUserName()">
       <div class="form-group pt-3">
         <div class="input-field"><span class="fa fa-user p-2"></span><input class="form-control" matInput placeholder="Enter Username" formControlName="userName"> </div>
         <p *ngIf="(f['userName'].touched || f['userName'].dirty) && f['userName'].errors">
@@ -23,6 +25,7 @@
           Start
         </button>
       </div>
+    </div>
   </form>
 </div>
 

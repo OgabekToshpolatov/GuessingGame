@@ -13,6 +13,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GameDialogComponent } from './components/game-dialog/game-dialog.component';
+import { MatDialogModule ,MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { GameDialogComponent } from './components/game-dialog/game-dialog.compon
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

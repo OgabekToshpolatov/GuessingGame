@@ -27,6 +27,14 @@ export class HomePageComponent implements OnInit {
     return this.userForm.controls;
   }
 
+  IsUserName(){
+    var username = localStorage.getItem('userName');
+    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",username);
+    if(username!==null)
+        return false;
+    else return true;
+  }
+
    createNewGame(){
     console.log(this.userForm.value)
     if(this.userForm.valid){

@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <button mat-button routerLink="/">Home</button>
-  <button mat-button routerLink="/leaderboard">Leaderboard</button>
+  <button *ngIf="IsAutenticate()" mat-button routerLink="/game">Game</button>
+  <!-- <button mat-button routerLink="/leaderboard">Leaderboard</button> -->
 
   <span style="flex: 1 1 auto"></span>
 

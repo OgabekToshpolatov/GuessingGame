@@ -6,6 +6,8 @@ import { GameDto } from 'src/app/interfaces/GameDto';
 import { GuessRequest } from 'src/app/interfaces/GuessRequest';
 import { GuessResponse } from 'src/app/interfaces/GuessResponse';
 import { GameService } from 'src/app/services/game.service';
+import { GameDialogComponent } from '../game-dialog/game-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
@@ -21,7 +23,8 @@ export class GameComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private gameService: GameService,
     private router: Router,
-    private formBuilder: FormBuilder) {}
+    private formBuilder: FormBuilder,
+    private dialog:MatDialog,) {}
 
     ngOnInit(): void {
       this.numberForm = this.formBuilder.group({
@@ -36,6 +39,7 @@ export class GameComponent implements OnInit {
         (data:any) => {
           this.gameDto = data as GameDto;
           console.log("#########################",this.gameDto.maximumTries)
+          console.log("PPPPPPPPPPPPPPPP",this.gameDto.numberOfTries);
           console.log(this.gameDto.secretNumber)
           console.log(this.gameDto.isWinner)
           console.log("IsFinished ======================>",this.gameDto.isFinish)
@@ -58,8 +62,10 @@ export class GameComponent implements OnInit {
       return false;
     }
 
-    newGame(){
-      
+    openDialog(){
+      this.dialog.open(GameDialogComponent,{
+        width:"30%"
+      })
     }
 
 
@@ -74,6 +80,10 @@ export class GameComponent implements OnInit {
                         console.log("ffff"+this.numberForm.get('ones')?.value)
 
       return guessNumber/10;
+    }
+
+    numberOfRest(){
+      return (8-Number(this.gameDto?.numberOfTries));
     }
 
     sendNumberForm(){

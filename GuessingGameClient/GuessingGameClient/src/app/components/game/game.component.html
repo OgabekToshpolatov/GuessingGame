@@ -17,7 +17,7 @@
           </b>
 
           <b *ngIf="gameDto?.isFinish">
-            <button mat-raised-button color="primary" (click)="newGame()">
+            <button mat-raised-button color="primary" (click)="openDialog()">
             New Game
             </button>
           </b>
@@ -29,7 +29,7 @@
                       <div class="form-block">
                         <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="thousands">
                         <p *ngIf="(f['thousands'].touched || f['thousands'].dirty) && f['thousands'].errors">
-                          <span *ngIf = "f['thousands'].errors?.['required'] ">A digit is required</span>
+                          <span *ngIf = "f['thousands'].errors?.['required'] ">*A digit is required*</span>
                           <span *ngIf = "f['thousands'].errors?.['min'] ">The minimum value is 0</span>
                           <span *ngIf = "f['thousands'].errors?.['max'] ">The maximum value is 9</span>
                         </p>
@@ -37,23 +37,23 @@
 
                         <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="hundreds">
                         <p *ngIf="(f['hundreds'].touched || f['hundreds'].dirty) && f['hundreds'].errors">
-                          <span *ngIf = "f['hundreds'].errors?.['required'] ">A digit is required</span>
-                          <span *ngIf = "f['hundreds'].errors?.['min'] ">The minimum value is 0</span>
+                          <span *ngIf = "f['hundreds'].errors?.['required'] ">*A digit is required*</span>
+                          <span *ngIf = "f['hundreds'].errors?.['min'] ">*The minimum value is 0*</span>
                           <span *ngIf = "f['hundreds'].errors?.['max'] ">The maximum value is 9</span>
                         </p>
 
 
                         <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="tens">
                         <p *ngIf="(f['tens'].touched || f['tens'].dirty) && f['tens'].errors">
-                          <span *ngIf = "f['tens'].errors?.['required'] ">A digit is required</span>
-                          <span *ngIf = "f['tens'].errors?.['min'] ">The minimum value is 0</span>
-                          <span *ngIf = "f['tens'].errors?.['max'] ">The maximum value is 9</span>
+                          <span *ngIf = "f['tens'].errors?.['required'] ">*A digit is required*</span>
+                          <span *ngIf = "f['tens'].errors?.['min'] ">*The minimum value is 0*</span>
+                          <span *ngIf = "f['tens'].errors?.['max'] ">*The maximum value is 9*</span>
                         </p>
 
 
                         <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="ones">
                         <p *ngIf="(f['ones'].touched || f['ones'].dirty) && f['ones'].errors">
-                          <span *ngIf = "f['ones'].errors?.['required'] ">A digit is required</span>
+                          <span *ngIf = "f['ones'].errors?.['required'] ">*A digit is required*</span>
                           <span *ngIf = "f['ones'].errors?.['min'] ">The minimum value is 0</span>
                           <span *ngIf = "f['ones'].errors?.['max'] ">The maximum value is 9</span>
                         </p>
@@ -61,47 +61,15 @@
                     </div>
             <button class="btn btn-success text-white" (click)="sendNumberForm()" [disabled]="!numberForm.valid" *ngIf="!gameDto?.isFinish">Yuborish</button>
            </form>
+           <div *ngIf="!gameDto?.isFinish">
+              <p>{{numberOfRest()}}</p>
+           </div>
       </div>
       <div class="rigth-block">
            <ul>
               <li>
                 <div class="result-left-box">1223</div>
                  <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                 <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                 <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                <div>Message =====> </div>
-                <div class="result-left-box">M:3 P:2</div>
-              </li>
-              <li>
-                <div class="result-left-box">1223</div>
-                <div>Message =====> </div>
                 <div class="result-left-box">M:3 P:2</div>
               </li>
            </ul>
