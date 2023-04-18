@@ -3,7 +3,7 @@ export interface GameDto{
   secretNumber: number,
   numberOfTries: number,
   maximumTries: number,
-  isFinished: boolean,
+  isFinish: boolean,
   isWinner: boolean,
   userId: number
 }

@@ -30,12 +30,15 @@ export class GameComponent implements OnInit {
         tens: new FormControl('', [Validators.required, Validators.min(0), Validators.max(9)]),
         ones: new FormControl('', [Validators.required, Validators.min(0), Validators.max(9)])
       });
-
       var gameIdStorage = localStorage.getItem("gameId");
       var gameId = Number(gameIdStorage);
       this.gameService.getGameById(gameId).subscribe(
         (data:any) => {
           this.gameDto = data as GameDto;
+          console.log("#########################",this.gameDto.maximumTries)
+          console.log(this.gameDto.secretNumber)
+          console.log(this.gameDto.isWinner)
+          console.log("IsFinished ======================>",this.gameDto.isFinish)
 
           if(this.gameDto.userId.toString() !== localStorage.getItem('userId')){
             this.router.navigate(['/']);
@@ -47,6 +50,18 @@ export class GameComponent implements OnInit {
     get f(){
       return this.numberForm.controls;
     }
+
+    isGuessResponseNotNull(): boolean{
+      if(this.guessResponse)
+        return true;
+
+      return false;
+    }
+
+    newGame(){
+      
+    }
+
 
     getNumber(): number{
       const guessNumber = this.numberForm.get('thousands')?.value * 10000
@@ -77,6 +92,7 @@ export class GameComponent implements OnInit {
           this.guessResponse = data as GuessResponse;
           this.otherTriesResult
             .push(`Message: ${this.guessResponse.message} | Guess Number: ${guessRequest.guessNumber}`);
+            this.router.navigate(['game']).then(() => { window.location.reload() })
         },
         (error: HttpErrorResponse) => {
           alert(error.error.error);
