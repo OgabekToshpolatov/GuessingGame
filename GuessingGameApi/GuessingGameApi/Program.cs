@@ -22,6 +22,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGameService,GameService>();
 
 builder.Services.AddDbContext<AppDbContext>(options => {
+    
     options.UseLazyLoadingProxies().UseSqlite("Data Source=game.db");
 });
 

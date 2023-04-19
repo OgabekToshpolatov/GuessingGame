@@ -23,7 +23,11 @@ export class GameService {
   }
 
   guessNumber(guessRequest: GuessRequest):Observable<GuessResponse>{
-    return this.http.post<GuessResponse>(this.baseUrl + 'guess-number', guessRequest)
+    return this.http.post<GuessResponse>(this.baseUrl + 'guess-number', guessRequest);
+  }
+
+  getUserRating(){
+    return this.http.get<any>(this.baseUrl + 'user-rating');
   }
 
 

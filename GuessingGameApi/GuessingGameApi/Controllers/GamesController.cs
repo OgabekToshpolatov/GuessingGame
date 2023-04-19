@@ -47,7 +47,7 @@ public class GamesController:ControllerBase
     }
 
     [HttpGet("user-rating")]
-    public async Task<IActionResult> GetLeaderboard() =>
+    public async Task<IActionResult> GetUserRating() =>
         Ok(await _gameService.GetUserRatingAsync());
 
 

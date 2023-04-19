@@ -14,6 +14,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GameDialogComponent } from './components/game-dialog/game-dialog.component';
 import { MatDialogModule ,MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { RatingComponent } from './components/rating/rating.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 
 @NgModule({
@@ -22,7 +29,8 @@ import { MatDialogModule ,MAT_DIALOG_DATA} from '@angular/material/dialog';
     ToolbarComponent,
     GameComponent,
     HomePageComponent,
-    GameDialogComponent
+    GameDialogComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,11 @@ import { MatDialogModule ,MAT_DIALOG_DATA} from '@angular/material/dialog';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatInputModule
 
   ],
   providers: [],
