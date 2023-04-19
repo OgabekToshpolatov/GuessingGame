@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GameDto } from '../interfaces/GameDto';
 import { GuessRequest } from '../interfaces/GuessRequest';
 import { GuessResponse } from '../interfaces/GuessResponse';
+import { GameDtos } from '../interfaces/GameDtos';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class GameService {
     return this.http.post<GameDto>(this.baseUrl + 'new-game', userForm);
   }
 
-  getGameById(gameId: number): Observable<GameDto> {
-    return this.http.get<GameDto>(this.baseUrl + gameId);
+  getGameById(gameId: number): Observable<GameDtos> {
+    return this.http.get<GameDtos>(this.baseUrl + gameId);
   }
 
   guessNumber(guessRequest: GuessRequest):Observable<GuessResponse>{

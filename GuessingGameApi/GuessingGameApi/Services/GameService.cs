@@ -43,15 +43,43 @@ public class GameService : IGameService
         return newGameDto;
     }
 
-    public async ValueTask<GameDto> GetGameByIdAsync(long gameId)
+    public async ValueTask<GameDtos> GetGameByIdAsync(long gameId)
     {
         var game = await _context.Games!.FindAsync(gameId);
+        
         
         if(game == null)
                 throw new BadRequestException("Game does not exists!");
 
+        var gameTriesList =await  _context.GameTries!.Where(gameTries => gameTries.GameId == gameId).ToListAsync();
 
-        return game.Adapt<GameDto>();
+        var gameTriesListDto = gameTriesList.Select(gameTries => gameTries.Adapt<Dtos.GameTriesDto>()).ToList();
+        
+        var gameDto = new GameDtos
+        {
+            Id = game.Id,
+            SecretNumber = game.SecretNumber,
+            NumberOfTries = game.NumberOfTries,
+            MaximumTries = game.MaximumTries,
+            IsFinish = game.IsFinish,
+            IsWinner = game.IsWinner,
+            UserId = game.UserId,
+            GameTries = gameTriesListDto
+        };
+
+
+        return gameDto;
+    }
+
+    private GameTriesDto ConvertToGameTriesModel(GameTries gameTries)
+    {
+        if(gameTries == null) return null!;
+
+        return new GameTriesDto
+        {
+            GuessNumber = gameTries.GuessNumber,
+            Message = gameTries.Message
+        };
     }
 
     public async ValueTask<List<GameDto>> GetGamesAsync()
@@ -147,6 +175,17 @@ public class GameService : IGameService
          await _context.SaveChangesAsync();
 
         var message = Calculation.CheckGuessNumber(game.SecretNumber, guessRequest.GuessNumber!.Value);
+
+        var gameTries = new GameTries
+        {
+          GuessNumber = (int)guessRequest.GuessNumber,
+          Message = message,
+          GameId = game.Id
+        };
+
+        await _context.GameTries!.AddAsync(gameTries);
+        await _context.SaveChangesAsync();
+
         var guessResponse = new GuessResponse
         {
            Message = message,

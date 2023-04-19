@@ -14,7 +14,11 @@ namespace GuessingGameApi.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true);
 
             modelBuilder.Entity("GuessingGameApi.Entities.Game", b =>
                 {
@@ -47,6 +51,28 @@ namespace GuessingGameApi.Migrations
                     b.ToTable("Games");
                 });
 
+            modelBuilder.Entity("GuessingGameApi.Entities.GameTries", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GuessNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("GameTries");
+                });
+
             modelBuilder.Entity("GuessingGameApi.Entities.User", b =>
                 {
                     b.Property<long>("Id")
@@ -70,6 +96,22 @@ namespace GuessingGameApi.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GuessingGameApi.Entities.GameTries", b =>
+                {
+                    b.HasOne("GuessingGameApi.Entities.Game", "User")
+                        .WithMany("GameTriess")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GuessingGameApi.Entities.Game", b =>
+                {
+                    b.Navigation("GameTriess");
                 });
 
             modelBuilder.Entity("GuessingGameApi.Entities.User", b =>

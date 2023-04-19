@@ -9,4 +9,5 @@ public class GameDto
     public bool IsFinish { get; set; }
     public bool IsWinner { get; set; }
     public long UserId { get; set; }
+
 }

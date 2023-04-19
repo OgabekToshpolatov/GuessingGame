@@ -8,6 +8,7 @@ import { GuessResponse } from 'src/app/interfaces/GuessResponse';
 import { GameService } from 'src/app/services/game.service';
 import { GameDialogComponent } from '../game-dialog/game-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { GameDtos } from 'src/app/interfaces/GameDtos';
 
 @Component({
   selector: 'app-game',
@@ -17,7 +18,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class GameComponent implements OnInit {
 
   numberForm!:FormGroup
-  gameDto?: GameDto;
+  gameDtos?: GameDtos;
   guessResponse?: GuessResponse;
   otherTriesResult: string[] = [];
 
@@ -39,14 +40,15 @@ export class GameComponent implements OnInit {
       this.gameService.getGameById(gameId).subscribe(
         (data:any) => {
 
-          this.gameDto = data as GameDto;
-          console.log("#########################",this.gameDto.maximumTries)
-          console.log("PPPPPPPPPPPPPPPP",this.gameDto.numberOfTries);
-          console.log(this.gameDto.secretNumber)
-          console.log(this.gameDto.isWinner)
-          console.log("IsFinished ======================>",this.gameDto.isFinish)
+          this.gameDtos = data as GameDtos;
+          console.log(this.gameDtos);
+          console.log("#########################",this.gameDtos.maximumTries)
+          console.log("PPPPPPPPPPPPPPPP",this.gameDtos.numberOfTries);
+          console.log(this.gameDtos.secretNumber)
+          console.log(this.gameDtos.isWinner)
+          console.log("IsFinished ======================>",this.gameDtos.isFinish)
 
-          if(this.gameDto.userId.toString() !== localStorage.getItem('userId')){
+          if(this.gameDtos.userId.toString() !== localStorage.getItem('userId')){
             this.router.navigate(['/']);
           }
         }
@@ -63,11 +65,18 @@ export class GameComponent implements OnInit {
       return this.numberForm.controls;
     }
 
+
+
     isGuessResponseNotNull(): boolean{
       if(this.guessResponse)
         return true;
 
       return false;
+    }
+
+    getGameTries(){
+      console.log("FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+this.gameDtos?.gameTries);
+      return this.gameDtos?.gameTries;
     }
 
     openDialog(){
@@ -91,7 +100,7 @@ export class GameComponent implements OnInit {
     }
 
     numberOfRest(){
-      return (8-Number(this.gameDto?.numberOfTries));
+      return (8-Number(this.gameDtos?.numberOfTries));
     }
 
     sendNumberForm(){
