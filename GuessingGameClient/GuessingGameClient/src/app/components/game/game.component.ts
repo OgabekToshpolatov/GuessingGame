@@ -20,8 +20,6 @@ export class GameComponent implements OnInit {
   numberForm!:FormGroup
   gameDtos?: GameDtos;
   guessResponse?: GuessResponse;
-  otherTriesResult: string[] = [];
-  
 
   constructor(private activatedRoute: ActivatedRoute,
     private gameService: GameService,
@@ -42,25 +40,12 @@ export class GameComponent implements OnInit {
         (data:any) => {
 
           this.gameDtos = data as GameDtos;
-          console.log(this.gameDtos);
-          console.log("#########################",this.gameDtos.maximumTries)
-          console.log("PPPPPPPPPPPPPPPP",this.gameDtos.numberOfTries);
           console.log(this.gameDtos.secretNumber)
-          console.log(this.gameDtos.isWinner)
-          console.log("IsFinished ======================>",this.gameDtos.isFinish)
-
           if(this.gameDtos.userId.toString() !== localStorage.getItem('userId')){
             this.router.navigate(['/']).then(() => { window.location.reload() });
           }
         }
       )
-      console.log(this.otherTriesResult.length);
-      console.log("MASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-      for(const str of this.otherTriesResult){
-        console.log(str);
-      }
-      console.log("MASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-
     }
     get f(){
       return this.numberForm.controls;
@@ -74,7 +59,6 @@ export class GameComponent implements OnInit {
     }
 
     getGameTries(){
-      console.log("FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+this.gameDtos?.gameTries);
       return this.gameDtos?.gameTries;
     }
 
@@ -90,11 +74,6 @@ export class GameComponent implements OnInit {
                         + this.numberForm.get('hundreds')?.value * 1000
                         + this.numberForm.get('tens')?.value * 100
                         + this.numberForm.get('ones')?.value*10;
-                        console.log("sas"+this.numberForm.get('thousands')?.value)
-                        console.log("sasas"+this.numberForm.get('hundreds')?.value)
-                        console.log("aadad"+this.numberForm.get('tens')?.value)
-                        console.log("ffff"+this.numberForm.get('ones')?.value)
-
       return guessNumber/10;
     }
 
@@ -116,13 +95,6 @@ export class GameComponent implements OnInit {
       this.gameService.guessNumber(guessRequest).subscribe(
         (data: any) => {
           this.guessResponse = data as GuessResponse;
-          console.log("Salom salom salom salom ",this.guessResponse.message)
-          const otherTries:string[] = [];
-          otherTries
-            .push(`Message: ${this.guessResponse.message} | Guess Number: ${guessRequest.guessNumber}`);
-            for(const str of this.otherTriesResult){
-              console.log(str);
-            }
 
             this.router.navigate(['game']).then(() => { window.location.reload() })
         },

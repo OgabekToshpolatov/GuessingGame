@@ -31,15 +31,11 @@ export class GameDialogComponent implements OnInit{
     }
 
     createNewGame(){
-      console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-      console.log("USerName =========================> ",this.userForm.value)
       console.log(this.userForm.value)
       if(this.userForm.valid){
         this.gameService.createGame(this.userForm.value)
              .subscribe({
               next:(res) => {
-                console.log("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-                console.log(res);
                 localStorage.setItem('userName',this.userForm.get('userName')?.value);
                 localStorage.setItem('userId',res.userId.toString());
                 localStorage.setItem('gameId',res.id.toString());

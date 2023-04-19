@@ -29,7 +29,6 @@ export class HomePageComponent implements OnInit {
 
   IsUserName(){
     var username = localStorage.getItem('userName');
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",username);
     if(username!==null)
         return false;
     else return true;
