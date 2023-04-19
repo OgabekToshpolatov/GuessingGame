@@ -21,6 +21,7 @@ export class GameComponent implements OnInit {
   gameDtos?: GameDtos;
   guessResponse?: GuessResponse;
   otherTriesResult: string[] = [];
+  
 
   constructor(private activatedRoute: ActivatedRoute,
     private gameService: GameService,
@@ -49,7 +50,7 @@ export class GameComponent implements OnInit {
           console.log("IsFinished ======================>",this.gameDtos.isFinish)
 
           if(this.gameDtos.userId.toString() !== localStorage.getItem('userId')){
-            this.router.navigate(['/']);
+            this.router.navigate(['/']).then(() => { window.location.reload() });
           }
         }
       )
@@ -64,8 +65,6 @@ export class GameComponent implements OnInit {
     get f(){
       return this.numberForm.controls;
     }
-
-
 
     isGuessResponseNotNull(): boolean{
       if(this.guessResponse)
@@ -125,7 +124,7 @@ export class GameComponent implements OnInit {
               console.log(str);
             }
 
-            this.router.navigate(['game'])
+            this.router.navigate(['game']).then(() => { window.location.reload() })
         },
         (error: HttpErrorResponse) => {
           alert(error.error.error);

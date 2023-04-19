@@ -5,74 +5,98 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
 </head>
 <body>
-   <div class="game-style">
-      <div class="left-block">
+ <div class="container">
+  <div class="row">
+    <div class="col-xl-6 d-flex align-items-center justify-content-center border left-block  my-5">
+      <div class=" ">
+        <h1 class="text-center py-3">Guessing Game</h1>
         <p *ngIf="!isGuessResponseNotNull()">
           <b *ngIf="gameDtos?.isFinish">
             <h3>Secret Number: {{gameDtos?.secretNumber}}</h3>
-            <h2 style="color: green;" *ngIf="gameDtos?.isWinner">You win</h2>
-            <h2 style="color: red;" *ngIf="!gameDtos?.isWinner">You lose</h2>
+            <h2 class="text-center" style="color: green;" *ngIf="gameDtos?.isWinner">You win</h2>
+            <h2 class="text-center" style="color: red;" *ngIf="!gameDtos?.isWinner">You lose</h2>
           </b>
 
-          <b *ngIf="gameDtos?.isFinish">
+          <b class=" d-flex  justify-content-center" *ngIf="gameDtos?.isFinish">
             <button mat-raised-button color="primary" (click)="openDialog()">
             New Game
             </button>
           </b>
         </p>
-           <br>
-           <h3>Guess Game</h3>
-           <form [formGroup]="numberForm">
-                    <div *ngIf="!gameDtos?.isFinish">
-                      <div class="form-block">
-                        <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="thousands">
-                        <p *ngIf="(f['thousands'].touched || f['thousands'].dirty) && f['thousands'].errors">
-                          <span *ngIf = "f['thousands'].errors?.['required'] ">*A digit is required*</span>
-                          <span *ngIf = "f['thousands'].errors?.['min'] ">The minimum value is 0</span>
-                          <span *ngIf = "f['thousands'].errors?.['max'] ">The maximum value is 9</span>
-                        </p>
+
+      <form [formGroup]="numberForm">
+        <div *ngIf="!gameDtos?.isFinish">
+          <div class="form-block">  <div class="d-flex gap-2 justify-content-center">
+
+            <input id="input1" class="form-control" maxlength="1" type="text" placeholder="" matInput pattern="[0-9]" formControlName="thousands" >
+            <input id="input2" class="form-control" maxlength="1" type="text" placeholder="" matInput pattern="[0-9]" formControlName="hundreds" [disabled]="true">
+            <input id="input3" class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="tens" pattern="[0-9]+" [disabled]="true">
+            <input id="input4" class="form-control" maxlength="1" type="text" placeholder="" matInput pattern="[0-9]+" formControlName="ones" [disabled]="true">
+          </div>
+            <p *ngIf="(f['thousands'].touched || f['thousands'].dirty) && f['thousands'].errors">
+              <span class="text-danger" *ngIf = "f['thousands'].errors?.['required'] ">*A digit is required*</span>
+              <span  *ngIf = "f['thousands'].errors?.['min'] ">The minimum value is 0</span>
+              <span *ngIf = "f['thousands'].errors?.['max'] ">The maximum value is 9</span>
+            </p>
 
 
-                        <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="hundreds">
-                        <p *ngIf="(f['hundreds'].touched || f['hundreds'].dirty) && f['hundreds'].errors">
-                          <span *ngIf = "f['hundreds'].errors?.['required'] ">*A digit is required*</span>
-                          <span *ngIf = "f['hundreds'].errors?.['min'] ">*The minimum value is 0*</span>
-                          <span *ngIf = "f['hundreds'].errors?.['max'] ">The maximum value is 9</span>
-                        </p>
+            <p *ngIf="(f['hundreds'].touched || f['hundreds'].dirty) && f['hundreds'].errors">
+              <span class="text-danger" *ngIf = "f['hundreds'].errors?.['required'] ">*A digit is required*</span>
+              <span *ngIf = "f['hundreds'].errors?.['min'] ">*The minimum value is 0*</span>
+              <span *ngIf = "f['hundreds'].errors?.['max'] ">The maximum value is 9</span>
+            </p>
 
 
-                        <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="tens">
-                        <p *ngIf="(f['tens'].touched || f['tens'].dirty) && f['tens'].errors">
-                          <span *ngIf = "f['tens'].errors?.['required'] ">*A digit is required*</span>
-                          <span *ngIf = "f['tens'].errors?.['min'] ">*The minimum value is 0*</span>
-                          <span *ngIf = "f['tens'].errors?.['max'] ">*The maximum value is 9*</span>
-                        </p>
+
+            <p *ngIf="(f['tens'].touched || f['tens'].dirty) && f['tens'].errors">
+              <span class="text-danger" *ngIf = "f['tens'].errors?.['required'] ">*A digit is required*</span>
+              <span *ngIf="f['tens'].errors?.['required']"></span>
+              <span *ngIf = "f['tens'].errors?.['min'] ">*The minimum value is 0*</span>
+              <span *ngIf = "f['tens'].errors?.['max'] ">*The maximum value is 9*</span>
+            </p>
 
 
-                        <input class="form-control" maxlength="1" type="text" placeholder="" matInput formControlName="ones">
-                        <p *ngIf="(f['ones'].touched || f['ones'].dirty) && f['ones'].errors">
-                          <span *ngIf = "f['ones'].errors?.['required'] ">*A digit is required*</span>
-                          <span *ngIf = "f['ones'].errors?.['min'] ">The minimum value is 0</span>
-                          <span *ngIf = "f['ones'].errors?.['max'] ">The maximum value is 9</span>
-                        </p>
-                    </div>
-                    </div>
-            <button class="btn btn-success text-white" (click)="sendNumberForm()" [disabled]="!numberForm.valid" *ngIf="!gameDtos?.isFinish">Yuborish</button>
-           </form>
-           <div *ngIf="!gameDtos?.isFinish">
-              <p>{{numberOfRest()}}</p>
-           </div>
-      </div>
-      <div class="rigth-block">
-        <ul>
-          <li *ngFor="let person of getGameTries()">
-            <h2>{{ person.message }}</h2>
-            <h2>{{ person.guessNumber}}</h2>
-          </li>
-        </ul>
-      </div>
-   </div>
+
+            <p *ngIf="(f['ones'].touched || f['ones'].dirty) && f['ones'].errors">
+              <span class="text-danger" *ngIf = "f['ones'].errors?.['required'] ">*A digit is required*</span>
+              <span *ngIf = "f['ones'].errors?.['min'] ">The minimum value is 0</span>
+              <span *ngIf = "f['ones'].errors?.['max'] ">The maximum value is 9</span>
+            </p>
+        </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <button class="btn btn-success text-white" (click)="sendNumberForm()" [disabled]="!numberForm.valid" *ngIf="!gameDtos?.isFinish">Yuborish</button>
+        </div>
+
+     <div class="text-center my-3" *ngIf="!gameDtos?.isFinish"><p> Qolgan imkonyatlar {{numberOfRest()}}</p></div>
+
+</form>
+</div>
+    </div>
+    <div class="col-xl-6 border my-5">
+      <h3 class="text-center mt-5 py-4">A history of attempts</h3>
+      <table class="table table-hover my-3">
+        <thead>
+          <tr>
+            <th class="col text-center">GuessNumber</th>
+            <th class="col text-center">Message</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of getGameTries()">
+            <td class="col text-center" >{{ person.guessNumber}}</td>
+            <td class="col text-center" >{{ person.message }}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>
+
 </body>
 </html>
